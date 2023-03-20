@@ -43,6 +43,9 @@ public class SettingsLoad {
             }
             if(!commands.containsKey(interval))commands.put(interval,new ArrayList<>());
             commands.get(interval).add(message);
+
+            // SHOW INFO
+            System.out.println(String.format("Message set. | message : %s | interval : %ds",message,interval));
         }
     }
 
@@ -64,6 +67,8 @@ public class SettingsLoad {
             if(!commands.containsKey(interval))commands.put(interval,new ArrayList<>());
             commands.get(interval).add(command);
 
+            // SHOW INFO
+            System.out.println(String.format("Command set. | command : %s | interval : %ds",command,interval));
         }
     }
 
