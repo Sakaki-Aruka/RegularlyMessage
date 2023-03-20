@@ -1,0 +1,14 @@
+name: RegularlyMessage
+version: '${project.version}'
+main: com.github.sakakiaruka.regularlymessage.RegularlyMessage
+api-version: 1.19
+authors: [SakakiAruka]
+website: https://github.com/Sakaki-Aruka
+commands:
+  regularly:
+    usage: "/regularly [add|remove]"
+    permission: regularly.normal
+
+permissions:
+  regularly.normal:
+    default: true

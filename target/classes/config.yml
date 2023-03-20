@@ -1,0 +1,6 @@
+# interval (second)
+
+message:
+  - 60:
+      - "Hello world!"
+
