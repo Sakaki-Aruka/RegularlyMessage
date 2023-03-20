@@ -3,6 +3,8 @@ package com.github.sakakiaruka.regularlymessage;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SettingsLoad {
     private FileConfiguration config;
@@ -19,51 +21,53 @@ public class SettingsLoad {
         commands = new HashMap<>();
         denied = new ArrayList<>();
 
-        setMessages();
-        setCommands();
-
-        //debug
-        System.out.println(messages);
-        System.out.println(commands);
-
-        setInterval();
-        setDenied();
-    }
-
-    private boolean check(String path){
-        if(!config.contains(path))return false;
-        if(config.getStringList(path).isEmpty())return false;
-        return true;
+        if(config.contains("command"))setCommands();
+        if(config.contains("message"))setMessages();
+        if(config.contains("command") && config.contains("message"))setInterval();
+        if(config.contains("deny"))setDenied();
     }
 
     private void setMessages(){
-//        if(!check("message"))return;
-
-        //debug
-        System.out.println("messages : "+config.getStringList("message"));
-
         for(String s:config.getStringList("message")){
-            long interval = Long.valueOf(s);
-            for(String t:config.getStringList("message."+s)){
-                if(!commands.containsKey(interval))commands.put(interval,new ArrayList<>());
-                commands.get(interval).add(t);
+            Pattern p = Pattern.compile("(.*)\\((\\d+)\\)");
+            Matcher m = p.matcher(s);
+            if(!m.find())continue;
+            long interval;
+            String message;
+            try{
+                interval = Long.valueOf(m.group(2));
+                message = m.group(1);
+            }catch (Exception e){
+                System.out.println("[CustomCrafter] A invalid setting found from the config file.");
+                continue;
             }
+            if(!commands.containsKey(interval))commands.put(interval,new ArrayList<>());
+            commands.get(interval).add(message);
         }
     }
 
     private void setCommands(){
-//        if(!check("command"))return;
         for(String s:config.getStringList("command")){
-            long interval = Long.valueOf(s);
-            for(String t:config.getStringList("command."+s)){
-                if(!commands.containsKey(interval))commands.put(interval,new ArrayList<>());
-                commands.get(interval).add(t);
+            Pattern p = Pattern.compile("(.*)\\((\\d+)\\)");
+            Matcher m = p.matcher(s);
+            if(!m.find())continue;
+            long interval;
+            String command;
+            try{
+                interval = Long.valueOf(m.group(2));
+                command = m.group(1);
+            }catch (Exception e){
+                System.out.println("[CustomCrafter] A invalid setting found from the config file.");
+                continue;
             }
+
+            if(!commands.containsKey(interval))commands.put(interval,new ArrayList<>());
+            commands.get(interval).add(command);
+
         }
     }
 
     private void setDenied(){
-//        if(!check("deny"))return;
         List<String> list = config.getStringList("deny");
         list.forEach(s->denied.add(UUID.fromString(s)));
     }
