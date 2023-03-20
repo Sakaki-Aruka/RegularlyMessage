@@ -12,6 +12,8 @@ import java.util.UUID;
 import static com.github.sakakiaruka.regularlymessage.SettingsLoad.*;
 
 public class MessageSend {
+
+    public static int taskID;
     private long counter = 0;
     public void main(){
         BukkitRunnable main = new BukkitRunnable() {
@@ -26,13 +28,19 @@ public class MessageSend {
                 uuids.forEach(s->{
                     Player p = Bukkit.getPlayer(s);
                     message.forEach(t->p.sendMessage(t));
+                    Bukkit.getLogger().info("[Regularly Message] The system sent messages to players.");
                 });
+
+                //debug
+                System.out.println(String.format("time : %d | counter : %d | interval : %d",time,counter,interval));
+                System.out.println(String.format("message : %s",message));
 
                 addCount();
             }
         };
 
-        main.runTaskTimer(RegularlyMessage.getInstance(),interval * 20,1l);
+        main.runTaskTimer(RegularlyMessage.getInstance(),1l,interval * 20);
+        taskID = main.getTaskId();
 
     }
 
@@ -52,7 +60,6 @@ public class MessageSend {
     private List<String> getList(long time, Map<Long,List<String>> map){
         List<String> list = new ArrayList<>();
         for(long l:map.keySet()){
-            if(l < time)continue;
             if(time % l ==0)list.addAll(map.get(l));
         }
         return list;

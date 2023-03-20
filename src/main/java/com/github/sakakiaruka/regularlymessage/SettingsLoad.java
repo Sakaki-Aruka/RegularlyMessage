@@ -23,7 +23,7 @@ public class SettingsLoad {
 
         if(config.contains("command"))setCommands();
         if(config.contains("message"))setMessages();
-        if(config.contains("command") && config.contains("message"))setInterval();
+        if(config.contains("command") || config.contains("message"))setInterval();
         if(config.contains("deny"))setDenied();
     }
 
@@ -41,8 +41,8 @@ public class SettingsLoad {
                 System.out.println("[CustomCrafter] A invalid setting found from the config file.");
                 continue;
             }
-            if(!commands.containsKey(interval))commands.put(interval,new ArrayList<>());
-            commands.get(interval).add(message);
+            if(!messages.containsKey(interval))messages.put(interval,new ArrayList<>());
+            messages.get(interval).add(message);
 
             // SHOW INFO
             System.out.println(String.format("Message set. | message : %s | interval : %ds",message,interval));
@@ -74,6 +74,7 @@ public class SettingsLoad {
 
     private void setDenied(){
         List<String> list = config.getStringList("deny");
+        if(list.isEmpty())return;
         list.forEach(s->denied.add(UUID.fromString(s)));
     }
 
@@ -88,6 +89,9 @@ public class SettingsLoad {
         for(int i=1;i<list.size();i++){
             interval = gcd(interval,list.get(i));
         }
+
+        //debug
+        System.out.println(String.format("interval : %d",interval));
     }
 
     private long gcd(long x,long y){

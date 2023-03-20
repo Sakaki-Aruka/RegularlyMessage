@@ -1,6 +1,7 @@
 # interval (second)
 
+deny:
+
 message:
-  - 60:
-      - "Hello world!"
+  - "Hello world(60)"
 

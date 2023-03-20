@@ -2,6 +2,11 @@ package com.github.sakakiaruka.regularlymessage;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.github.sakakiaruka.regularlymessage.SettingsLoad.denied;
+
 public final class RegularlyMessage extends JavaPlugin {
     private static RegularlyMessage instance;
 
@@ -19,7 +24,7 @@ public final class RegularlyMessage extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        new SettingsSave().main();
+        new DenyListSave().main();
     }
 
     public static RegularlyMessage getInstance(){
