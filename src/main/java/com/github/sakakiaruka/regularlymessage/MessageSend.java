@@ -43,8 +43,9 @@ public class MessageSend {
     private List<UUID> getSendPlayers(){
         List<Player> temp = (List<Player>) Bukkit.getOnlinePlayers();
         List<UUID> list = new ArrayList<>();
-        temp.forEach(s->list.add(s.getUniqueId()));
-        list.removeAll(denied);
+        temp.forEach(s->{
+            if(!denied.contains(s.getUniqueId()))list.add(s.getUniqueId());
+        });
         return list;
     }
 
