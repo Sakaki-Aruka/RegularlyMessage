@@ -25,9 +25,11 @@ This plugins command is only "/regularly".
 The command has some arguments.
 ## add
 When you execute the command with this argument, you will not get broadcast messages.  
-## remove
+## remove  
 When you execute the command with this argument, you will be able to see broadcast messages.  
 (means "remove the players UUID from the deny list.")
+
+
 ---
 These commands are only for administrators.
 ## reload
