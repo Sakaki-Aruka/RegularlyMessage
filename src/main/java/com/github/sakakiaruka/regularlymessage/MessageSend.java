@@ -28,7 +28,6 @@ public class MessageSend {
                 uuids.forEach(s->{
                     Player p = Bukkit.getPlayer(s);
                     message.forEach(t->p.sendMessage(t));
-                    Bukkit.getLogger().info("[Regularly Message] The system sent messages to players.");
                 });
 
                 //debug

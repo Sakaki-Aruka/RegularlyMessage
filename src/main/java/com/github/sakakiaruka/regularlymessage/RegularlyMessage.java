@@ -2,11 +2,6 @@ package com.github.sakakiaruka.regularlymessage;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.github.sakakiaruka.regularlymessage.SettingsLoad.denied;
-
 public final class RegularlyMessage extends JavaPlugin {
     private static RegularlyMessage instance;
 

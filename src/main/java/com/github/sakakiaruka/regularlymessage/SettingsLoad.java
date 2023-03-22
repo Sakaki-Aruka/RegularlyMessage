@@ -38,7 +38,7 @@ public class SettingsLoad {
                 interval = Long.valueOf(m.group(2));
                 message = m.group(1);
             }catch (Exception e){
-                System.out.println("[CustomCrafter] A invalid setting found from the config file.");
+                System.out.println("[RegularlyMessage] A invalid setting found from the config file.");
                 continue;
             }
             if(!messages.containsKey(interval))messages.put(interval,new ArrayList<>());
@@ -60,7 +60,7 @@ public class SettingsLoad {
                 interval = Long.valueOf(m.group(2));
                 command = m.group(1);
             }catch (Exception e){
-                System.out.println("[CustomCrafter] A invalid setting found from the config file.");
+                System.out.println("[RegularlyMessage] A invalid setting found from the config file.");
                 continue;
             }
 
