@@ -9,8 +9,5 @@
         <module name="RegularlyMessage" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="RegularlyMessage" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
