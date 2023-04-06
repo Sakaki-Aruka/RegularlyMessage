@@ -23,11 +23,10 @@ This section rule is same with the message section.
 # /regularly
 This plugins command is only "/regularly".  
 The command has some arguments.
-## add
+## deny
 When you execute the command with this argument, you will not get broadcast messages.  
-## remove  
+## allow  
 When you execute the command with this argument, you will be able to see broadcast messages.  
-(means "remove the players UUID from the deny list.")
 
 
 ---
